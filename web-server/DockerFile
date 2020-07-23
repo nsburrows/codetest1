@@ -1,0 +1,17 @@
+FROM node:12
+
+# The directory to be used for the app
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+# Install app dependencies
+RUN npm install
+
+# Copy all the application files
+COPY . .
+
+
+EXPOSE 80
+CMD [ "node", "server.js" ]
+

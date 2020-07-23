@@ -1,0 +1,22 @@
+version: '3'
+services:
+  api:
+    image: nsburrows/codetest1-apiserver
+    hostname: api
+    ports:
+      - 8080:8080
+    restart: always
+
+  web:
+    image: nsburrows/codetest1-webserver
+    hostname: web
+    ports:
+     - 80:80
+    restart: always
+
+  db:
+    image: nsburrows/codetest1-dbserver
+    hostname: db
+    ports:
+        - 5432:5432
+    restart: always

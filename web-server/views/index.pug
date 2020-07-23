@@ -1,0 +1,16 @@
+extends default
+
+block content
+  div.container
+    each person in people
+      div.person.card
+        div.person-image(style=`background: url('/images/${person.name}.jpg') top center
+        no-repeat; background-size: cover;`)
+        h2.person-name
+          | Name: #{person.name}
+        h2.person-age
+          | Age: #{person.age}
+        h2.person-graduate
+          | College Grad: #{person.is_college_grad}
+        a(href=`/profile?id=${person.id}`)
+          | View Profile
