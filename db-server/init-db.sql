@@ -7,3 +7,6 @@ CREATE TABLE if not exists masterdata.applicant (
 	age int NOT NULL,
 	is_college_grad bool NOT NULL DEFAULT false
 );
+
+-- Ensure that API service doesn't break if csv is not loaded
+insert into masterdata.applicant(id, name, age, is_college_grad) values (1,'Test',25,true);
