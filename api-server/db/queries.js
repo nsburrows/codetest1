@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool
+
 require('dotenv/config');
 
 const pool = new Pool({
@@ -29,10 +30,31 @@ const getApplicant = (request, response) => {
     })
 }
 
+const addApplicant = (request, response) => {
+
+  console.log(request.body);
+  const insertQuery = 'insert into masterdata.applicant ("name", age, is_college_grad) values ($1::text, $2::integer, $3::boolean)';
+  const insertParams = [request.body.name, request.body.age, request.body.is_college_grad];
+
+  pool.query(insertQuery, insertParams, (error, results) => {
+      try{
+          response.status(200).json(results.rowCount)
+      } catch(err){
+          response.status(404).json({Error: 'All required fields must be filled: name, age and is_college_grad. Example object {"name": "John", "age": 35, "is_college_grad": true}'})
+      }
+  });
+
+  // pool.query('COMMIT', err => {
+  //   if (err) {
+  //     console.error('Error committing transaction', err.stack)
+  //   }
+  // });
+}
 
   module.exports = {
     getAllApplicants,
     getApplicant,
+    addApplicant
   }
 
   

@@ -1,16 +1,48 @@
 extends default
 
 block content
+
+  - var availableImages = ["Jane", "Nigel", "Rachel", "Rashad", "Scott"];
+
   div.container
     each person in people
       div.person.card
-        div.person-image(style=`background: url('/images/${person.name}.jpg') top center
-        no-repeat; background-size: cover;`)
+        if availableImages.includes(person.name)
+          div.person-image(style=`background: url('/images/${person.name}.jpg') top center no-repeat; background-size: cover;`)
+        else
+          div.person-image(style=`background: url('/images/noimage.jpg') top center no-repeat; background-size: cover;`)
         h2.person-name
           | Name: #{person.name}
         h2.person-age
           | Age: #{person.age}
-        h2.person-graduate
-          | College Grad: #{person.is_college_grad}
+        if person.is_college_grad
+          h2.person-graduate College Grad: Yes
+        else
+          h2.person-graduate College Grad: No
         a(href=`/profile?id=${person.id}`)
           | View Profile
+  
+  hr(style= `border: 2px solid darkslategray; margin-top: 2rem; margin-bottom: 1rem; margin-left: 10rem; margin-right: 10rem;`)
+
+  .main.container
+    .row
+        h1.display-4 Applicant Form
+        form(method='post' action='/submission' enctype='application/json' target='_self')
+          div.form-group
+            label(for='name') Name
+            input.form-control(type='text' id='name' placeholder='John' name='name')
+          div.form-group
+            label(for='age') Age
+            input.form-control(type='number' id='age' placeholder='18' name='age' min='18' max='100')
+          div.form-group
+            label Graduated College?
+            div.col-sm-10
+              div.form-check.form-check-inline
+                input.form-check-input(type='radio' id='is_college_grad_1' name='is_college_grad' value='true')
+                label.form-check-label(for='is_college_grad_1') Yes
+              div.form-check.form-check-inline
+                input.form-check-input(type='radio' id='is_college_grad_2' name='is_college_grad' value='false' checked)
+                label.form-check-label(for='is_college_grad_2') No
+          input.btn.btn-primary(type='submit' value='Add')
+          p 
+          p 

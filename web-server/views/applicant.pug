@@ -3,13 +3,20 @@ extends default
 block header
 
 block content
+
+  - var availableImages = ["Jane", "Nigel", "Rachel", "Rashad", "Scott"];
+
   div.profile
-    div.profile-image(style=`background: url('/images/${person.name}.jpg') top center
-    no-repeat; background-size: cover;`)
+    if availableImages.includes(person.name)
+      div.profile-image(style=`background: url('/images/${person.name}.jpg') top center no-repeat; background-size: cover;`)
+    else
+      div.profile-image(style=`background: url('/images/noimage.jpg') top center no-repeat; background-size: cover;`)
     div.profile-details
       h1.profile-name
         | Name: #{person.name}
       h2.profile-tagline
         | Age: #{person.age}
-      h2.profile-tagline
-        | College Grad: #{person.is_college_grad}
+      if person.is_college_grad
+        h2.profile-tagline College Grad: Yes
+      else
+        h2.profile-tagline College Grad: No

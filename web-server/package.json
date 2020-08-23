@@ -1,13 +1,12 @@
 {
-  "name": "simple-node-website",
+  "name": "Simple Web UI",
   "version": "0.1.0",
   "description": "A simple website built with Node, Express and Pug",
   "main": "server.js",
   "scripts": {
     "start": "npx nodemon server.js"
   },
-  "author": "Ayo Isaiah",
-  "license": "MIT",
+  "author": "Nigel Burrows",
   "dependencies": {
     "bootstrap": "^4.5.0",
     "express": "^4.16.3",

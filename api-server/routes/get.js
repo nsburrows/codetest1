@@ -56,6 +56,47 @@ router.get('/applicant', db.getAllApplicants);
  */
 router.get('/applicant/:applicantId', db.getApplicant);
 
+/**
+ * @swagger
+ * 
+ * /v1/applicant:
+ *   post:
+ *     description: Creates a new applicant
+ *     produces:
+ *       - application/json
+ *     requestBody:
+ *       content: 
+ *         'application/json':
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *               is_college_grad:
+ *                 type: boolean
+ *             required:
+ *               - name
+ *               - age
+ *               - is_college_grad
+ *             example:
+ *                name: John
+ *                age: 35
+ *                is_college_grad: false 
+ *           examples:
+ *             applicant:
+ *               summary: User Example
+ *               value: 
+ *                 name: John
+ *                 age: 35
+ *                 is_college_grad: false
+ *     responses:
+ *       200:
+ *         description: Returns the amount of applicants inserted which should be 1
+ */
+router.post('/applicant', db.addApplicant);
+
 // Return Swagger documentaion
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerSpec, options));
