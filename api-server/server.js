@@ -21,7 +21,7 @@ app.use(
 )
 
 // Import Routes
-const getRoutes = require('./routes/get');
+const getRoutes = require('./routes/routes');
 
 app.use('/v1', getRoutes);
 

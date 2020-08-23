@@ -16,7 +16,7 @@ const options = {
     validatorUrl: 'none'
   }, 
   // Path to the API docs
-  apis: ['./routes/get.js'],
+  apis: ['./routes/routes.js'],
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
@@ -39,15 +39,15 @@ router.get('/applicant', db.getAllApplicants);
 /**
  * @swagger
  * 
- * /v1/applicant/:applicantId:
+ * /v1/applicant/{applicantId}:
  *   get:
- *     description: Get a specific applicant's profile based off their name. Will return their name, age and if they graduated college
+ *     description: Get a specific applicant's profile based off their primary key (Id). Will return their name, age and if they graduated college
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: applicantId
  *         description: The primary key (Id) of the applicant
- *         in: formData
+ *         in: path
  *         required: true
  *         type: integer
  *     responses:
